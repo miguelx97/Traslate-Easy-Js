@@ -7,20 +7,15 @@ export default class TranslateEasy {
     async init(language:string, filesRoute:string = './'):Promise<void> {
         if(!language || language === 'default') language = navigator.language.substring(0, 2)
         return new Promise((resolve, reject) => {
-            const xhttp = new XMLHttpRequest();
             // console.log(filesRoute+language+".json");
             const file:string = filesRoute+language+".json"
-            xhttp.open("GET", file);
-            xhttp.send();
-            xhttp.onload = () => {
-                if(xhttp.status !== 200) reject({name:'TranslateEasy onload',status:xhttp.status, file});
-                const translationsJson = JSON.parse(xhttp.response);
+            fetch(file).then(response => response.json()).then(translationsJson => {
                 this.translations = new Map(Object.entries(translationsJson));
                 resolve();
-            };
-            xhttp.onerror = () => {
-                reject({name:'TranslateEasy onerror',status:xhttp.status, file});
-            }
+            }).catch(error => {
+                console.log(error);
+                reject({name:'TranslateEasy error', error, file});
+            });
         })
     }
 
