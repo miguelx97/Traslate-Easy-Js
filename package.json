@@ -1,0 +1,19 @@
+{
+  "name": "translate-easy",
+  "version": "1.0.0",
+  "description": "Simple and lightweight library to translate your web app",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": ["translate", "easy", "multilanguage", "i18n"],
+  "author": "Miguel Martin Contreras",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
